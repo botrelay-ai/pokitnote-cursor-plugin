@@ -1,10 +1,11 @@
 {
   "mcpServers": {
     "pokit-note": {
-      "command": "python3",
-      "args": ["${CURSOR_PLUGIN_ROOT}/server/mcp_server.py"],
-      "env": {
-        "POKITNOTE_API_BASE": "${POKITNOTE_API_BASE}"
+      "type": "http",
+      "url": "${POKITNOTE_API_BASE}/mcp/",
+      "auth": {
+        "CLIENT_ID": "grok-bot",
+        "scopes": ["notes"]
       }
     }
   }
