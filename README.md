@@ -1,14 +1,17 @@
 # Pokit Note Cursor plugin
 
-This is the Cursor plugin for Pokit Note. It lets Grok Bot connect to Pokit Note.
+This is the Cursor plugin for Pokit Note. Grok Bot can show, create, and edit your notes, lists, and recipes.
 
-Grok Bot can show, create, and edit your notes, lists, and recipes.
+## Connect
 
-## Sign in
+1. Install the plugin.
+2. Open Authenticate on the Pokit Note MCP.
+3. Sign in on Pokit Note in the browser.
+4. Choose Allow.
 
-Ask Grok Bot to sign in to Pokit Note, or use the Sign in command. A Pokit Note page opens. Sign in there, then allow access to your notes, lists, and recipes.
+Cursor keeps that connection. The plugin talks to Pokit Note over remote HTTP. It does not start a local Python server, it does not use the key saved by the Pokit Note app on your iPhone, and it does not replace that key.
 
-The connection from that page is the one Grok Bot uses. The plugin does not use the key saved by the Pokit Note app on your iPhone, and it does not replace that key.
+Authenticate works after staging is deployed with the Pokit Note Streamable HTTP MCP. Until that deploy, the plugin can be installed, and the sign-in page will not finish.
 
 ## Notes
 
@@ -28,6 +31,6 @@ Grok Bot can create a recipe and change it. A recipe has a name, notes, instruct
 
 ## Pokit Note address
 
-The usual address is the staging server, `https://stage.pokitnote.com`.
+The usual address is the staging server, `https://stage.pokitnote.com`. The MCP address is that server plus `/mcp/`, for example `https://stage.pokitnote.com/mcp/`.
 
-You can switch it. In the plugin settings, set **Pokit Note address** to the server where your account lives. Leave it blank to keep using staging.
+You can switch it. In the plugin settings, set **Pokit Note address** to the server where your account lives. Do not add a trailing slash. Leave it blank to keep using staging.

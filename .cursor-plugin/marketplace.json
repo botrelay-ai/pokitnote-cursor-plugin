@@ -4,13 +4,13 @@
     "name": "BotRelay LLC"
   },
   "metadata": {
-    "description": "Lets Grok Bot use your Pokit Note notes, lists, and recipes after you sign in and allow access."
+    "description": "Install the plugin, open Authenticate on the Pokit Note MCP, sign in on Pokit Note in the browser, and choose Allow. Grok Bot can then show, create, and edit your notes, lists, and recipes."
   },
   "plugins": [
     {
       "name": "pokit-note",
       "source": ".",
-      "description": "Lets Grok Bot use your Pokit Note notes, lists, and recipes after you sign in and allow access."
+      "description": "Install the plugin, open Authenticate on the Pokit Note MCP, sign in on Pokit Note in the browser, and choose Allow. Grok Bot can then show, create, and edit your notes, lists, and recipes."
     }
   ]
 }

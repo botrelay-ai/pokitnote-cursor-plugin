@@ -5,9 +5,11 @@ description: Use when someone wants to show, create, or edit notes, lists, or re
 
 # Pokit Note
 
-Grok Bot can show, create, and edit notes, lists, and recipes after the person signs in on the Pokit Note page and allows access.
+Grok Bot shows, creates, and edits notes, lists, and recipes with the Pokit Note MCP tools after the person connects.
 
-- If Grok Bot is not connected, start sign-in and wait until that page is finished.
+- If the Pokit Note MCP is not connected, ask them to install the plugin, open Authenticate on the MCP, sign in on Pokit Note in the browser, and choose Allow. Wait until that is finished.
+- Do not start a local Python server, and do not call a local sign-in tool. Cursor Authenticate is the connection.
+- Do not ask for, copy, or replace the key saved by the Pokit Note app on the iPhone.
 - Then show, create, or edit the notes, lists, or recipes they asked for.
 - A note has a title and text. The text may already include formatting from the iPhone. When you change it, keep the rest of the text.
 - A list is one of List, Checklist, or Grocery Shopping. Choose that type when you create it. The type cannot be changed later. You can change the name, color, icon, whether completed items are crossed off or hidden, and whether lines are on.
@@ -17,5 +19,4 @@ Grok Bot can show, create, and edit notes, lists, and recipes after the person s
 - Do not add Flag, Date, Time, or Urgent.
 - A recipe has a name, notes, instructions, a color, and an icon. Ingredients have a name, quantity, measurement, and an optional group and aisle. Steps are the ordered method. Change only the parts the person asked for.
 - Open a note, list, or recipe when you need an identifier before editing it.
-- Do not ask for, copy, or replace the key saved by the Pokit Note app on the iPhone.
-- Use the Pokit Note address from the plugin settings. Change that address when they name a different server. The usual staging address is https://stage.pokitnote.com.
+- Use the Pokit Note address from the plugin settings. The MCP lives at that address plus /mcp/. Change the address when they name a different server. The usual staging address is https://stage.pokitnote.com.

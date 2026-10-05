@@ -1,8 +1,13 @@
 ---
 name: sign-in
-description: Sign in to Pokit Note so Grok Bot can use your notes, lists, and recipes.
+description: Connect Pokit Note so Grok Bot can show, create, and edit notes, lists, and recipes.
 ---
 
-Sign in to Pokit Note. Open the Pokit Note page and wait until the person signs in and allows access to notes, lists, and recipes.
+Connect Pokit Note so Grok Bot can show, create, and edit notes, lists, and recipes.
 
-Do not use the key saved by the Pokit Note app on the iPhone.
+1. Install the plugin if it is not installed.
+2. Open Authenticate on the Pokit Note MCP.
+3. Sign in on Pokit Note in the browser.
+4. Choose Allow.
+
+Do not start a local server. Do not use the key saved by the Pokit Note app on the iPhone.
