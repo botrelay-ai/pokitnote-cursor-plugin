@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "pokit-note": {
+    "pokitnote": {
       "type": "http",
       "url": "${POKITNOTE_API_BASE}/mcp/",
       "auth": {
