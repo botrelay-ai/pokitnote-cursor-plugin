@@ -1,0 +1,16 @@
+{
+  "name": "pokit-note",
+  "owner": {
+    "name": "BotRelay LLC"
+  },
+  "metadata": {
+    "description": "Lets Grok Bot use your Pokit Note notes, lists, and recipes after you sign in and allow access."
+  },
+  "plugins": [
+    {
+      "name": "pokit-note",
+      "source": ".",
+      "description": "Lets Grok Bot use your Pokit Note notes, lists, and recipes after you sign in and allow access."
+    }
+  ]
+}
