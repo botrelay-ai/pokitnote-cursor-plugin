@@ -1,0 +1,26 @@
+{
+  "name": "pokit-note",
+  "displayName": "Pokit Note",
+  "version": "0.1.0",
+  "description": "Lets Grok Bot use your Pokit Note notes, lists, and recipes after you sign in and allow access.",
+  "author": {
+    "name": "BotRelay LLC"
+  },
+  "repository": "https://github.com/botrelay-ai/pokitnote-cursor-plugin",
+  "homepage": "https://github.com/botrelay-ai/pokitnote-cursor-plugin",
+  "keywords": ["pokit-note", "notes", "lists", "recipes"],
+  "skills": "./skills/",
+  "commands": "./commands/",
+  "mcpServers": "./mcp.json",
+  "variables": {
+    "type": "object",
+    "properties": {
+      "POKITNOTE_API_BASE": {
+        "type": "string",
+        "title": "Pokit Note address",
+        "description": "The Pokit Note server Grok Bot should use. Staging is the usual address. Change it if your account lives somewhere else.",
+        "default": "https://stage.pokitnote.com"
+      }
+    }
+  }
+}
