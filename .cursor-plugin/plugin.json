@@ -1,7 +1,7 @@
 {
   "name": "pokit-note",
   "displayName": "Pokit Note",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Lets Grok Bot use your Pokit Note notes, lists, and recipes after you sign in and allow access.",
   "author": {
     "name": "BotRelay LLC"
