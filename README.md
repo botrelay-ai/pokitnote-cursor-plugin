@@ -6,9 +6,11 @@ Grok Bot can show, create, and edit your notes, lists, and recipes.
 
 ## Sign in
 
-Ask Grok Bot to sign in to Pokit Note, or use the Sign in command. A Pokit Note page opens. Sign in there, then allow access to your notes, lists, and recipes.
+Open Pokit Note in Cursor and click **Authenticate**. A Pokit Note page opens in the browser. Sign in there, then allow access to your notes, lists, and recipes.
 
-The connection from that page is the one Grok Bot uses. The plugin does not use the key saved by the Pokit Note app on your iPhone, and it does not replace that key.
+That connection is the one Grok Bot uses. It does not use the key saved by the Pokit Note app on your iPhone, and it does not replace that key.
+
+There is no local program to install. Cursor talks to Pokit Note over the internet.
 
 ## Notes
 
@@ -30,4 +32,4 @@ Grok Bot can create a recipe and change it. A recipe has a name, notes, instruct
 
 The usual address is the staging server, `https://stage.pokitnote.com`.
 
-You can switch it. In the plugin settings, set **Pokit Note address** to the server where your account lives. Leave it blank to keep using staging.
+You can switch it. In the plugin settings, set **Pokit Note address** to the server where your account lives. Leave it blank to keep using staging. Do not add a slash at the end.
