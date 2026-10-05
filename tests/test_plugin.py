@@ -9,7 +9,8 @@ EXAMPLE = "https://example.invalid"
 class PluginConfigTest(unittest.TestCase):
     def test_mcp_points_at_the_remote_server(self):
         raw = json.loads((ROOT / "mcp.json").read_text(encoding="utf-8"))
-        server = raw["mcpServers"]["pokit-note"]
+        self.assertEqual(list(raw["mcpServers"]), ["pokitnote"])
+        server = raw["mcpServers"]["pokitnote"]
         self.assertEqual(server["type"], "http")
         self.assertNotIn("command", server)
         self.assertNotIn("args", server)
