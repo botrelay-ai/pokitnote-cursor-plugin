@@ -28,6 +28,20 @@ Grok Bot can create a recipe and change it. A recipe has a name, notes, instruct
 
 Ask Grok Bot to create a note or change one. A note has a title and text.
 
+## Connect Your Assistant
+
+Connect Grok Bot to the Pokit Note app so you can share links and photos with it and it hears about your changes.
+
+1. Install the Pokit Note plugin in Grok Bot, click **Authenticate**, sign in to Pokit Note, and allow access.
+2. Ask Grok Bot: "Set up a routine that handles my Pokit Note Connected Assistant webhook, following the Pokit Note connected assistant skill." Grok Bot creates a routine that runs when Pokit Note calls its webhook.
+3. Open the routine's settings in the Grok Bot sidebar and copy its Webhook URL and Authorization header (the key). Grok Bot links you there. It won't paste the key into chat.
+4. In the Pokit Note app on your iPhone, open Account, then Connected Assistant, and choose Grok Bot. Paste the URL and the key, tap Save, then tap Send Test. Grok Bot confirms it got the test.
+
+After that:
+
+- Share links and photos from the iPhone share sheet with a prompt, as shown below.
+- Grok Bot gets a notice when you change a list, note, or recipe. Turn notices off for one item in its Info, or for everything in Connected Assistant settings.
+
 ## Share photos and web pages with Grok Bot
 
 In Safari, Photos, or any app, tap Share, choose Pokit Note, pick a quick prompt or type your own, and tap Send. Grok Bot handles it and tells you what it did.
