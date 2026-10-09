@@ -42,6 +42,7 @@ Set these only when the person asks, or when their request clearly includes them
 - A recipe has a name, notes, instructions, a color, and an icon. Recipe icons are usually fork.knife, birthday.cake, wineglass, carrot, fish, leaf, flame, basket, or cart.
 - Ingredients have a name and an aisle (both required), and an optional quantity, measurement, and group. Ingredients can be checked off.
 - Steps are the ordered method. A step can sit in a group, such as Sauce, when the method is split into parts.
+- To add a recipe's ingredients to a Grocery Shopping list, use the one-step add recipe to list action instead of adding items one by one. It skips ingredients already on the list.
 
 ## Recent changes
 
