@@ -57,4 +57,4 @@ Set these only when the person asks, or when their request clearly includes them
 ## Connection
 
 - Do not ask for, copy, or replace the key saved by the Pokit Note app on the iPhone.
-- Use the Pokit Note address from the plugin settings. The default is https://pokitnote.com. Use https://stage.pokitnote.com only when the person says they're testing on staging. Do not add a slash at the end.
+- The plugin connects to Pokit Note at https://pokitnote.com. There is no address setting to change.
