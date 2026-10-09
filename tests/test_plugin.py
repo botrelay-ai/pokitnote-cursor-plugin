@@ -33,7 +33,7 @@ class PluginConfigTest(unittest.TestCase):
         plugin = json.loads((ROOT / ".cursor-plugin" / "plugin.json").read_text(encoding="utf-8"))
         self.assertEqual(
             plugin["variables"]["properties"]["POKITNOTE_API_BASE"]["default"],
-            "https://api.pokitnote.com",
+            "https://pokitnote.com",
         )
         self.assertNotIn("pnt_", json.dumps(plugin))
 
