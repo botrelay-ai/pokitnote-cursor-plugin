@@ -2,7 +2,7 @@
   "name": "pokit-note",
   "displayName": "Pokit Note",
   "version": "0.5.0",
-  "description": "Collaborate with an AI assistant from your iPhone on to do lists, shopping, notes and more.",
+  "description": "Collaborate with an AI assistant from your iPhone on to-do lists, shopping, notes, recipes and more.",
   "author": {
     "name": "BotRelay LLC"
   },
@@ -19,7 +19,7 @@
         "type": "string",
         "title": "Pokit Note address",
         "description": "The Pokit Note server.",
-        "default": "https://api.pokitnote.com"
+        "default": "https://pokitnote.com"
       }
     }
   }
