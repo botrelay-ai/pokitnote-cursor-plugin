@@ -12,6 +12,12 @@ That connection is the one Grok Bot uses. It does not use the key saved by the P
 
 There is no local program to install. Cursor talks to Pokit Note over the internet.
 
+## Server
+
+The plugin connects to Pokit Note at https://pokitnote.com. There is no address to set.
+
+To test against staging, use a local copy of this plugin and change the `url` in `mcp.json` to `https://stage.pokitnote.com/mcp/`, or add a custom MCP server in Cursor with that address. Then click **Authenticate** and sign in with a staging account.
+
 ## Notes
 
 Ask Grok Bot to create a note or change one. A note has a title and text.
