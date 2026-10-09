@@ -20,9 +20,9 @@ Ask Grok Bot to create a note or change one. A note has a title and text.
 
 A list is a List, a Checklist, or a Grocery Shopping list. Grok Bot can create one and can change its name, color, icon, completed items, and lines. Completed items can stay crossed off or be hidden. Grok Bot can add items and change an item's name, checked state, note, and the item it sits under.
 
-A Grocery Shopping list groups items by aisle. The aisles are Fresh Produce, Meat and Fish, Pharmacy, Bakery, Flower Shop, Wine & Beer, Breakfast & Cereal, Baking & Spices, Canned Goods & Soup, Pasta, Rice & Sauces, Snacks & Crackers, Beverages, Dairy & Eggs, and Frozen Foods.
+A Grocery Shopping list groups items by aisle. The aisles are Fresh Produce, Meat and Fish, Pharmacy, Bakery, Flower Shop, Wine & Beer, Breakfast & Cereal, Baking & Spices, Canned Goods & Soup, Pasta, Rice & Sauces, Condiments, International, Snacks & Crackers, Beverages, Dairy & Eggs, Frozen Foods, and Other.
 
-The list type stays as it was when the list was created. A custom group name on a List or a Grocery Shopping list is kept on the iPhone and is not saved from here.
+The list type stays as it was when the list was created. Items can sit in named groups, such as This week. Grok Bot uses a group only when you ask for one or the list already has it, and uses aisles on a Grocery Shopping list.
 
 ## Recipes
 
@@ -30,6 +30,6 @@ Grok Bot can create a recipe and change it. A recipe has a name, notes, instruct
 
 ## Pokit Note address
 
-The usual address is the staging server, `https://stage.pokitnote.com`.
+The default address is Pokit Note's server, `https://api.pokitnote.com`.
 
-You can switch it. In the plugin settings, set **Pokit Note address** to the server where your account lives. Leave it blank to keep using staging. Do not add a slash at the end.
+To test on staging, set **Pokit Note address** in the plugin settings to `https://stage.pokitnote.com`. Leave it blank to use the default. Do not add a slash at the end.
