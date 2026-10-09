@@ -1,8 +1,6 @@
 # Pokit Note Cursor plugin
 
-This is the Cursor plugin for Pokit Note. It lets Grok Bot connect to Pokit Note.
-
-Grok Bot can show, create, and edit your notes, lists, and recipes.
+This is the Cursor plugin for Pokit Note. Pokit Note enables collaboration with Grok Bot from your phone on to-do lists, shopping, notes, recipes and more.
 
 ## Sign in
 
