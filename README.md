@@ -28,6 +28,6 @@ Grok Bot can create a recipe and change it. A recipe has a name, notes, instruct
 
 ## Pokit Note address
 
-The default address is Pokit Note's server, `https://api.pokitnote.com`.
+The default address is Pokit Note's server, `https://pokitnote.com`.
 
 To test on staging, set **Pokit Note address** in the plugin settings to `https://stage.pokitnote.com`. Leave it blank to use the default. Do not add a slash at the end.
