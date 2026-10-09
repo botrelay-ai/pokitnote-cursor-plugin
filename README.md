@@ -12,16 +12,6 @@ That connection is the one Grok Bot uses. It does not use the key saved by the P
 
 There is no local program to install. Cursor talks to Pokit Note over the internet.
 
-## Server
-
-The plugin connects to Pokit Note at https://pokitnote.com. There is no address to set.
-
-To test against staging, use a local copy of this plugin and change the `url` in `mcp.json` to `https://stage.pokitnote.com/mcp/`, or add a custom MCP server in Cursor with that address. Then click **Authenticate** and sign in with a staging account.
-
-## Notes
-
-Ask Grok Bot to create a note or change one. A note has a title and text.
-
 ## Lists
 
 A list is a List, a Checklist, or a Grocery Shopping list. Grok Bot can create one and can change its name, color, icon, completed items, and lines. Completed items can stay crossed off or be hidden. Grok Bot can add items and change an item's name, checked state, note, and the item it sits under.
@@ -34,7 +24,12 @@ The list type stays as it was when the list was created. Items can sit in named 
 
 Grok Bot can create a recipe and change it. A recipe has a name, notes, instructions, a color, and an icon. An ingredient has a name, a quantity, a measurement, and can sit in a group and an aisle. Steps are the ordered method.
 
-## Share from your iPhone
+## Notes
+
+Ask Grok Bot to create a note or change one. A note has a title and text.
+
+## Share photos and web pages with Grok Bot
+
 In Safari, Photos, or any app, tap Share, choose Pokit Note, pick a quick prompt or type your own, and tap Send. Grok Bot handles it and tells you what it did.
 
 - Recipe page: "Get the recipe from this page and add it to my recipes." Grok Bot saves it to Recipes with the ingredients sorted into grocery aisles, plus the steps.
