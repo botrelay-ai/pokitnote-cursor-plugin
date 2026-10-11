@@ -6,7 +6,7 @@ Pokit Note is currently only available for iPhone. Android support coming soon.
 
 ## Install and Connect Grok Bot
 
-Install the plugin through Cursor and connect Grok Bot to the Pokit Note app on your iPHone to share links and photos with agents and collaborate on updates.
+Install the plugin through Cursor and connect Grok Bot to the Pokit Note app on your iPhone to share links and photos with agents and collaborate on updates.
 
 1. **Install the Plugin** in Cursor.
    - **Now:** Open Settings > Open Customize > Marketplace. Click **Add Marketplace**, choose **Import from GitHub**, and enter https://github.com/botrelay-ai/pokitnote-cursor-plugin. Find the Pokit Note plugin and click the Add button to install it.
@@ -33,8 +33,7 @@ Grok Bot can create a recipe and change it. A recipe has a name, notes, instruct
 
 Ask Grok Bot to create a note or change one. A note has a title and text.
 
-
-After that:
+## How to Collaborate with Grok Bot:
 
 - Share links and photos from the iPhone share sheet with a prompt, as shown below.
 - Grok Bot gets a notice when you change a list, note, or recipe. Turn notices off for one item in its Info, or for everything in Connected Assistant settings.
