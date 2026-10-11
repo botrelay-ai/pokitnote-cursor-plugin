@@ -30,7 +30,7 @@ Each event is JSON with a `type`, an `id`, a `data` object, and a one-line `text
 1. Open the share through the connector with its `share_id`. This gives the link or the photo, and the prompt. If the photo link has expired, opening the share gives a fresh one. Photos are deleted after 7 days. If it's gone, say so.
 2. Do what the prompt says. For example:
    - Save a recipe: create it in Recipes with ingredients (each with a grocery aisle) and steps.
-   - Summarize a page: create a note with a clear title, a short summary, and the link.
+   - Summarize a page: create a note with a clear title, a short summary, and the link. Write that note as HTML using the format in the Pokit Note skill's Notes section.
    - Add something to buy: add it to the grocery list in the right aisle. If there is more than one grocery list and it's not clear which one, ask.
    - Identify a photo: say what it is and anything useful about it.
 3. If there is no prompt, don't guess. Tell the person what they shared and ask what they want done with it, with one or two suggestions.
