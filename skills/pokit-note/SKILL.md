@@ -13,6 +13,10 @@ Grok Bot can show, create, and edit notes, lists, and recipes after the person c
 ## Notes
 
 - A note has a title and text. The text may already include formatting from the iPhone. When you change it, keep the rest of the text.
+- Write note text as HTML so it shows as rich text on the iPhone. Lines that start with "- " show as plain text, not as a list.
+- Put bullets in `<ul><li>`, numbered lists in `<ol><li>`, and headings in bold with `<b>`.
+- Start the text with `<html>` and a short style block that sets the font to the 17px Apple system font: `<html><head><style>body, p, li {font-family: '.AppleSystemUIFont', -apple-system; font-size: 17px}</style></head><body>`, and end it with `</body></html>`. Leave out colors. The app uses its own text color so the note reads well in light and dark mode.
+- To edit a note, open it first and keep its existing HTML. Change only what the person asked for.
 
 ## Lists
 
