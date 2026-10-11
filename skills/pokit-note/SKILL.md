@@ -46,6 +46,8 @@ Set these only when the person asks, or when their request clearly includes them
 ## Recipes
 
 - A recipe has a name, notes, instructions, a color, and an icon. Recipe icons are usually fork.knife, birthday.cake, wineglass, carrot, fish, leaf, flame, basket, or cart.
+- Recipe notes are rich text, the same as a note. Write them as HTML using the format in Notes (lists in `<ul>`/`<ol>`, `<b>` headings, the 17px Apple system font style block, no colors).
+- To edit a recipe, open it first and keep its existing notes HTML.
 - Ingredients have a name and an aisle (both required), and an optional quantity, measurement, and group. Ingredients can be checked off.
 - Steps are the ordered method. A step can sit in a group, such as Sauce, when the method is split into parts.
 - To add a recipe's ingredients to a Grocery Shopping list, use the one-step add recipe to list action instead of adding items one by one. It skips ingredients already on the list.
