@@ -5,6 +5,8 @@ description: Use when a Pokit Note Connected Assistant webhook arrives (share_ur
 
 # Pokit Note Connected Assistant
 
+Pokit Note is pronounced "Pocket Note"; when speaking aloud, say "Pocket Note".
+
 Pokit Note sends Grok Bot an event when the person shares a web page or photo from the iPhone share sheet, or changes a note, list, or recipe on their phone. Read the details through the Pokit Note connector, do what they asked, and tell them what you did.
 
 ## Setup

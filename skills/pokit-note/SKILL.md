@@ -5,6 +5,8 @@ description: Use when someone wants to show, create, or edit notes, lists, or re
 
 # Pokit Note
 
+Pokit Note is pronounced "Pocket Note"; when speaking aloud, say "Pocket Note".
+
 Grok Bot can show, create, and edit notes, lists, and recipes after the person clicks Authenticate on Pokit Note, signs in, and allows access.
 
 - If Grok Bot is not connected, ask the person to click Authenticate on Pokit Note and wait until that page is finished.
