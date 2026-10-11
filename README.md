@@ -1,16 +1,21 @@
 # Pokit Note Cursor plugin
 
-This is the Cursor plugin for Pokit Note. Pokit Note enables collaboration with Grok Bot from your phone on to-do lists, shopping, notes, recipes and more.
+This is the Cursor plugin for Pokit Note (pronounced 'pocket note'). Pokit Note enables collaboration with Grok Bot from your phone on to-do lists, shopping, notes, recipes and more.
 
-Pokit Note is currently only available for iPhone. Support for Android coming soon.
+Pokit Note is currently only available for iPhone. Android support coming soon.
 
-## Sign in
+## Install and Connect Grok Bot
 
-Open Pokit Note in Cursor and click **Authenticate**. A Pokit Note page opens in the browser. Sign in there, then allow access to your notes, lists, and recipes.
+Install the plugin through Cursor and connect Grok Bot to the Pokit Note app on your iPHone to share links and photos with agents and collaborate on updates.
 
-That connection is the one Grok Bot uses. It does not use the key saved by the Pokit Note app on your iPhone, and it does not replace that key.
+1. **Install the Plugin** in Cursor.
+   - **Now:** Open Settings > Open Customize > Marketplace. Click **Add Marketplace**, choose **Import from GitHub**, and enter https://github.com/botrelay-ai/pokitnote-cursor-plugin. Find the Pokit Note plugin and click the Add button to install it.
+   - **Once Pokit Note is listed in the Marketplace:** Open Settings > Open Customize > Marketplace, search for "Pokit Note", and click Add to install it.
+2. After the Pokit Note plugin is added, open it to access the configuration. Under MCPs, next to Pokit Note, click **Authenticate**. This will open the Pokit Note website in the default browser. If you don't already have an account, create one, and then sign in and choose Allow Access to complete the set up.
+3. With the plugin authenticated and authorized prompt your Grok Bot agent with the following: "Set up a routine that handles my Pokit Note Connected Assistant webhook, following the Pokit Note connected assistant skill." Grok Bot creates a routine that runs when Pokit Note calls its webhook.
+4. Open the routine's settings in the Grok Bot sidebar and copy its Webhook POST to URL and Key. **Note:** you may have to ask the agent for a link to the routine in order to access the URL and Key.
+5. In the Pokit Note app on your iPhone, open Account, then Connected Assistant, and choose Grok Bot. Paste the URL and the key, tap Save, then tap Send Test. Grok Bot confirms it got the test.
 
-There is no local program to install. Cursor talks to Pokit Note over the internet.
 
 ## Lists
 
@@ -28,17 +33,6 @@ Grok Bot can create a recipe and change it. A recipe has a name, notes, instruct
 
 Ask Grok Bot to create a note or change one. A note has a title and text.
 
-## Connect Your Assistant
-
-Connect Grok Bot to the Pokit Note app so you can share links and photos with it and it hears about your changes.
-
-1. **Install the Plugin** in Cursor.
-   - **Now:** Open Settings > Open Customize > Marketplace. Click **Add Marketplace**, choose **Import from GitHub**, and enter https://github.com/botrelay-ai/pokitnote-cursor-plugin. Then install **Pokit Note**.
-   - **Once Pokit Note is listed in the Marketplace:** Open Settings > Open Customize > Marketplace, search for "Pokit Note", and install it.
-2. Open Pokit Note, click **Authenticate**, sign in to Pokit Note, and allow access.
-3. Ask Grok Bot: "Set up a routine that handles my Pokit Note Connected Assistant webhook, following the Pokit Note connected assistant skill." Grok Bot creates a routine that runs when Pokit Note calls its webhook.
-4. Open the routine's settings in the Grok Bot sidebar and copy its Webhook URL and Authorization header (the key). Grok Bot links you there. It won't paste the key into chat.
-5. In the Pokit Note app on your iPhone, open Account, then Connected Assistant, and choose Grok Bot. Paste the URL and the key, tap Save, then tap Send Test. Grok Bot confirms it got the test.
 
 After that:
 
