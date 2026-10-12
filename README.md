@@ -1,5 +1,7 @@
 # Pokit Note Cursor Plugin
 
+<img src="assets/logo.png" alt="Pokit Note" width="128" />
+
 This is the Cursor plugin for Pokit Note (pronounced 'Pocket Note'). Pokit Note enables collaboration with Grok Bot from your phone on to-do lists, shopping, notes, recipes and more.
 
 Pokit Note is currently only available for iPhone, and only in the US. Android support coming soon.
