@@ -1,4 +1,5 @@
 import json
+import struct
 import unittest
 from pathlib import Path
 
@@ -33,6 +34,11 @@ class PluginConfigTest(unittest.TestCase):
         self.assertEqual(plugin["mcpServers"], "./mcp.json")
         self.assertNotIn("variables", plugin)
         self.assertNotIn("pnt_", json.dumps(plugin))
+        self.assertEqual(plugin["logo"], "assets/logo.png")
+        logo = (ROOT / plugin["logo"]).read_bytes()
+        self.assertTrue(logo.startswith(b"\x89PNG\r\n\x1a\n"))
+        width, height = struct.unpack(">II", logo[16:24])
+        self.assertEqual((width, height), (256, 256))
 
 if __name__ == "__main__":
     unittest.main()
