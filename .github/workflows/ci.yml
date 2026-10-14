@@ -1,0 +1,107 @@
+name: Plugin checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: plugin-checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate manifests and skill frontmatter
+        run: python3 scripts/validate_plugin.py
+
+      - name: Run plugin tests
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Lint Python with Ruff
+        run: |
+          set -euo pipefail
+          mapfile -t files < <(git ls-files '*.py')
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "No Python files to lint."
+            exit 0
+          fi
+          python3 -m pip install --disable-pip-version-check ruff==0.17.0
+          ruff check "${files[@]}"
+
+      - name: Lint JavaScript and TypeScript with ESLint
+        run: |
+          set -euo pipefail
+          mapfile -t files < <(git ls-files '*.js' '*.jsx' '*.mjs' '*.cjs' '*.ts' '*.tsx')
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "No JavaScript or TypeScript files to lint."
+            exit 0
+          fi
+          install="${RUNNER_TEMP}/eslint"
+          npm install --prefix "$install" --no-save \
+            eslint@10.12.0 \
+            @eslint/js@10.0.1 \
+            @typescript-eslint/parser@8.71.2 \
+            globals@17.13.0
+          cat > "${install}/eslint.config.mjs" << 'EOF'
+          import js from "@eslint/js";
+          import tsParser from "@typescript-eslint/parser";
+          import globals from "globals";
+
+          export default [
+            js.configs.recommended,
+            {
+              files: ["**/*.{js,mjs,cjs,jsx,ts,tsx}"],
+              languageOptions: {
+                ecmaVersion: 2022,
+                sourceType: "module",
+                globals: { ...globals.node },
+              },
+            },
+            {
+              files: ["**/*.{ts,tsx}"],
+              languageOptions: { parser: tsParser },
+            },
+          ];
+          EOF
+          "$install/node_modules/.bin/eslint" -c "${install}/eslint.config.mjs" "${files[@]}"
+
+      - name: Lint shell scripts with shellcheck
+        run: |
+          set -euo pipefail
+          mapfile -t files < <(git ls-files '*.sh' '*.bash' '*.ksh' '*.zsh')
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "No shell scripts to lint."
+            exit 0
+          fi
+          if ! command -v shellcheck >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y shellcheck
+          fi
+          shellcheck "${files[@]}"
+
+      - name: Secret scan with gitleaks
+        run: |
+          set -euo pipefail
+          version=8.28.0
+          tarball="gitleaks_${version}_linux_x64.tar.gz"
+          curl -sSL -o "${RUNNER_TEMP}/${tarball}" \
+            "https://github.com/gitleaks/gitleaks/releases/download/v${version}/${tarball}"
+          echo "a65b5253807a68ac0cafa4414031fd740aeb55f54fb7e55f386acb52e6a840eb  ${RUNNER_TEMP}/${tarball}" \
+            | sha256sum -c -
+          tar -xzf "${RUNNER_TEMP}/${tarball}" -C "${RUNNER_TEMP}" gitleaks
+          "${RUNNER_TEMP}/gitleaks" detect --source . --redact --verbose --exit-code 1

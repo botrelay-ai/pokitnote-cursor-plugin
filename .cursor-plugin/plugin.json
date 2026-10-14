@@ -8,6 +8,7 @@
   },
   "repository": "https://github.com/botrelay-ai/pokitnote-cursor-plugin",
   "homepage": "https://github.com/botrelay-ai/pokitnote-cursor-plugin",
+  "license": "MIT",
   "logo": "assets/logo.png",
   "keywords": ["pokit-note", "notes", "lists", "recipes"],
   "skills": "./skills/",
