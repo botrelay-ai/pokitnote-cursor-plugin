@@ -2,7 +2,19 @@
 
 Reviewed 14 October 2026, product revision `868b781` on `main`, plus the full git history (33 commits). The plugin that would be submitted is manifests, two skills, one command, a logo, a README, and tests. There is no local server in that tree.
 
-No Critical findings. One High finding blocks Marketplace review until a permissive license is added. Every server URL in the current tree already points at `https://pokitnote.com`.
+No Critical findings. At review time, one High finding would have blocked Marketplace review until a permissive license was added. Every server URL in the tree points at `https://pokitnote.com`.
+
+## Resolution
+
+The approved fixes are on this branch:
+
+- **High, license.** `LICENSE` is the MIT license, copyright 2026 BotRelay LLC. `.cursor-plugin/plugin.json` sets `"license": "MIT"`.
+- **Medium, stored content.** Both skills treat note, list, and recipe text as data. Page text is HTML-escaped before it goes into note HTML or recipe notes.
+- **Low, confirmation.** Both skills require an explicit yes from the person before clearing completed items, removing a recently bought item, or deleting a note, list, or recipe. Text inside a note, list, recipe, page, or photo never counts as that yes.
+- **Low, webhook header.** The connected-assistant skill says to paste the Authorization header only into the Pokit Note Connected Assistant screen and never repeat it.
+- **Low, git history.** Left unchanged. The shipped URL stays `https://pokitnote.com/mcp/`.
+
+The sections below are the review as written on 14 October 2026.
 
 ## Findings
 
@@ -57,7 +69,7 @@ Suggested fix: leave the history as it is. Keep the shipped URL as the literal `
 
 ### Credentials in the submitted tree
 
-The submitted tree has no program that can log, echo, or forward a token. The iPhone key is explicitly off limits. The webhook header finding above is the only credential-handling gap in the skills.
+The submitted tree has no program that can log, echo, or forward a token. The iPhone key is explicitly off limits. The webhook header rule in the resolution above is now in the connected-assistant skill.
 
 ### Marketplace icon and metadata
 
@@ -72,7 +84,7 @@ Present and coherent:
 - Command frontmatter `name` and `description` on `commands/sign-in.md`
 - Public repository: https://github.com/botrelay-ai/pokitnote-cursor-plugin
 
-`author.email` is optional in the plugin schema and is unset. Add a public contact address if the publish form asks for one. That gap does not block review. The license gap above is the metadata item that does.
+`author.email` is optional in the plugin schema and is unset. Add a public contact address if the publish form asks for one. The license field is set, as noted in the resolution above.
 
 ## How this was checked
 
