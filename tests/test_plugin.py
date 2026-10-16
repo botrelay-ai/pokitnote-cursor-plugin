@@ -49,6 +49,15 @@ class PluginConfigTest(unittest.TestCase):
                 text,
             )
 
+    def test_pet_food_follows_frozen_foods(self):
+        for relative in ("skills/pokit-note/SKILL.md", "README.md"):
+            text = (ROOT / relative).read_text(encoding="utf-8")
+            self.assertIn("Frozen Foods, Pet Food, and Other", text)
+            self.assertIn(
+                "Dog and cat food, treats, and litter go in Pet Food.",
+                text,
+            )
+
 
 if __name__ == "__main__":
     unittest.main()
