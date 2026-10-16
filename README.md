@@ -26,7 +26,7 @@ Assistant setup and Send Test work right away. Editing, sharing, and change noti
 
 A list is a List, a Checklist, or a Grocery Shopping list. Grok Bot can create one and can change its name, color, icon, completed items, and lines. Completed items can stay crossed off or be hidden. Grok Bot can add items and change an item's name, checked state, note, flag, due date, urgent alarm, and the item it sits under. A flag marks an item as important. A due date is a day, or a day and a time. An urgent alarm rings on your phones at that time, and it needs a due date with a time.
 
-A Grocery Shopping list groups items by aisle. The aisles are Fresh Produce, Meat and Fish, Pharmacy, Bakery, Flower Shop, Wine & Beer, Breakfast & Cereal, Baking & Spices, Canned Goods & Soup, Pasta, Rice & Sauces, Condiments, International, Snacks & Crackers, Beverages, Dairy & Eggs, Frozen Foods, and Other.
+A Grocery Shopping list groups items by aisle. The aisles are Fresh Produce, Meat and Fish, Pharmacy, Bakery, Flower Shop, Wine & Beer, Breakfast & Cereal, Baking & Spices, Canned Goods & Soup, Pasta, Rice & Sauces, Condiments, International, Snacks & Crackers, Beverages, Coffee & Tea, Dairy & Eggs, Frozen Foods, and Other. Coffee beans, ground coffee, K-cups, and tea go in Coffee & Tea, not Beverages.
 
 The list type stays as it was when the list was created. Items can sit in named groups, such as This week. Grok Bot uses a group only when you ask for one or the list already has it, and uses aisles on a Grocery Shopping list.
 

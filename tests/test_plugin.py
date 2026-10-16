@@ -40,5 +40,15 @@ class PluginConfigTest(unittest.TestCase):
         width, height = struct.unpack(">II", logo[16:24])
         self.assertEqual((width, height), (256, 256))
 
+    def test_coffee_and_tea_follows_beverages(self):
+        for relative in ("skills/pokit-note/SKILL.md", "README.md"):
+            text = (ROOT / relative).read_text(encoding="utf-8")
+            self.assertIn("Beverages, Coffee & Tea, Dairy & Eggs", text)
+            self.assertIn(
+                "Coffee beans, ground coffee, K-cups, and tea go in Coffee & Tea, not Beverages.",
+                text,
+            )
+
+
 if __name__ == "__main__":
     unittest.main()
