@@ -58,6 +58,10 @@ class PluginConfigTest(unittest.TestCase):
                 text,
             )
 
+    def test_shared_link_goes_in_item_note(self):
+        text = (ROOT / "skills/pokit-note-connected-assistant/SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("always put the page link in that item's note", text)
+
 
 if __name__ == "__main__":
     unittest.main()
