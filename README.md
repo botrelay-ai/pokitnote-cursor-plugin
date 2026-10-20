@@ -20,7 +20,7 @@ Install the plugin through Cursor and connect Grok Bot to the Pokit Note app on 
 
 ## Subscription
 
-Assistant setup and Send Test work right away. Editing, sharing, and change notices need the free trial (free for the first month) or a subscription ($29.99/year through the App Store). Without one, the account is read-only.
+Assistant setup and Send Test work right away. Every new account gets 7 days of full access. After that, editing, sharing, and change notices need the free trial (free for the first month) or a subscription ($29.99/year through the App Store). Without one, the account is read-only.
 
 ## Lists
 
