@@ -1,4 +1,4 @@
-<h1></h1>
+<h1>
 <img src="assets/logo.png" alt="Pokit Note" width="64" style="vertical-align: middle;"/> Pokit Note Cursor Plugin
 </h1>
 
