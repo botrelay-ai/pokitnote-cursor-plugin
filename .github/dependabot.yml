@@ -1,0 +1,17 @@
+# npm and pip are omitted: the repository has no package manifest.
+# scripts/ and tests/ use the Python standard library. CI installs
+# ruff and ESLint into a temporary directory without a lockfile.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
