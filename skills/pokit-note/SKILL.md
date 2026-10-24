@@ -68,4 +68,4 @@ Set these only when the person asks, or when their request clearly includes them
 ## Connection
 
 - Do not ask for, copy, or replace the key saved by the Pokit Note app on the iPhone.
-- Leave Pokit Note address unset for normal use. The connector then uses https://pokitnote.com/mcp/. That address is an optional override of the MCP URL. Use a different address only when the person gives one.
+- Leave Pokit Note address unset for normal use. The connector then uses https://pokitnote.com/mcp with no trailing slash. That address is an optional override of the MCP URL. Use a different address only when the person gives one, and omit any trailing slash.

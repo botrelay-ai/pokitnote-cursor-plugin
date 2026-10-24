@@ -20,8 +20,8 @@
       "POKITNOTE_API_BASE": {
         "type": "string",
         "title": "Pokit Note address",
-        "description": "Optional MCP URL, including /mcp/. Defaults to https://pokitnote.com/mcp/. You do not need to set this.",
-        "default": "https://pokitnote.com/mcp/"
+        "description": "Optional MCP URL, including /mcp and no trailing slash. Defaults to https://pokitnote.com/mcp. You do not need to set this.",
+        "default": "https://pokitnote.com/mcp"
       }
     }
   }

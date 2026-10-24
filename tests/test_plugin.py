@@ -39,7 +39,10 @@ class PluginConfigTest(unittest.TestCase):
         address = variables["properties"]["POKITNOTE_API_BASE"]
         self.assertEqual(address["title"], "Pokit Note address")
         self.assertEqual(address["type"], "string")
-        self.assertEqual(address["default"], "https://pokitnote.com/mcp/")
+        self.assertEqual(address["default"], "https://pokitnote.com/mcp")
+        self.assertNotIn("mcp/", address["default"])
+        self.assertNotIn("mcp/", address["description"])
+        self.assertIn("no trailing slash", address["description"])
         self.assertNotIn("pnt_", json.dumps(plugin))
         self.assertEqual(plugin["logo"], "assets/logo.png")
         logo = (ROOT / plugin["logo"]).read_bytes()
@@ -78,8 +81,21 @@ class PluginConfigTest(unittest.TestCase):
         self.assertIsNone(
             validate.resolved_mcp_url_problem("${POKITNOTE_API_BASE}", plugin["variables"])
         )
-        self.assertIsNone(validate.resolved_mcp_url_problem("https://pokitnote.com/mcp/", None))
-        for url in ("https://stage.pokitnote.com/mcp/", "https://api.pokitnote.com/mcp/"):
+        self.assertIsNone(validate.resolved_mcp_url_problem("https://pokitnote.com/mcp", None))
+        self.assertIsNotNone(validate.resolved_mcp_url_problem("https://pokitnote.com/mcp/", None))
+        slashed_default = {
+            "type": "object",
+            "properties": {
+                "POKITNOTE_API_BASE": {
+                    "type": "string",
+                    "default": "https://pokitnote.com/mcp/",
+                }
+            },
+        }
+        self.assertIsNotNone(
+            validate.resolved_mcp_url_problem("${POKITNOTE_API_BASE}", slashed_default)
+        )
+        for url in ("https://stage.pokitnote.com/mcp", "https://api.pokitnote.com/mcp"):
             self.assertIsNotNone(validate.resolved_mcp_url_problem(url, None), url)
             staged = {
                 "type": "object",
@@ -95,7 +111,7 @@ class PluginConfigTest(unittest.TestCase):
             "properties": {
                 "POKITNOTE_API_BASE": {
                     "type": "string",
-                    "default": "https://pokitnote.com/mcp/",
+                    "default": "https://pokitnote.com/mcp",
                 }
             },
         }
@@ -110,7 +126,9 @@ class PluginConfigTest(unittest.TestCase):
         skill = (ROOT / "skills/pokit-note/SKILL.md").read_text(encoding="utf-8")
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         for text in (skill, readme):
-            self.assertIn("https://pokitnote.com/mcp/", text)
+            self.assertIn("https://pokitnote.com/mcp", text)
+            self.assertNotIn("https://pokitnote.com/mcp/", text)
+            self.assertIn("no trailing slash", text)
             self.assertIn("Leave Pokit Note address unset", text)
             self.assertNotIn("no address setting", text)
 

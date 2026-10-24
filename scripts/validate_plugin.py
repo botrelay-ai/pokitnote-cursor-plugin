@@ -60,7 +60,7 @@ SECRET_KEYS = {
     "token",
 }
 PRODUCTION_HOST = "pokitnote.com"
-PRODUCTION_MCP_URL = "https://pokitnote.com/mcp/"
+PRODUCTION_MCP_URL = "https://pokitnote.com/mcp"
 PLACEHOLDER = re.compile(r"\$\{([A-Za-z_][A-Za-z0-9_]*)\}")
 
 
@@ -274,15 +274,18 @@ def production_url_problem(value: str) -> str | None:
         )
     if parsed.port not in {None, 443} or parsed.username or parsed.password or parsed.query or parsed.fragment:
         return "server URL must not include a port, user, query, or fragment"
+    if parsed.path != "/mcp" or value.endswith("/"):
+        return f"server URL must be {PRODUCTION_MCP_URL} with no trailing slash"
     return None
 
 
 def resolved_mcp_url_problem(value: object, variables: object) -> str | None:
     """Reject a server URL whose published default is not production.
 
-    A literal URL has to be the production host. A ``${VAR}`` placeholder is
+    A literal URL has to be the production MCP URL. A ``${VAR}`` placeholder is
     allowed only when that variable is optional and substituting its default
-    produces ``https://pokitnote.com/mcp/``. Users then leave the setting unset.
+    produces ``https://pokitnote.com/mcp`` with no trailing slash. Users then
+    leave the setting unset. A trailing slash on that default breaks Authenticate.
     """
     if not isinstance(value, str) or not value.strip():
         return "expected a URL"

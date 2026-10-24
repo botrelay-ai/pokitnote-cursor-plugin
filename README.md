@@ -20,9 +20,9 @@ Install the plugin through Cursor and connect Grok Bot to the Pokit Note app on 
 
 ## Address
 
-Leave Pokit Note address unset for normal use. The connector uses https://pokitnote.com/mcp/.
+Leave Pokit Note address unset for normal use. The connector uses https://pokitnote.com/mcp with no trailing slash.
 
-That field is an optional override of the MCP URL. Set it only when you are pointing the connector at a different Pokit Note server.
+That field is an optional override of the MCP URL. Set it only when you are pointing the connector at a different Pokit Note server, and omit any trailing slash.
 
 ## Subscription
 
