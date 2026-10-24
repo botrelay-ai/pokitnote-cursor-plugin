@@ -1,5 +1,7 @@
 # Pokit Note Cursor plugin — security review (October 2026)
 
+This draft restores an optional Pokit Note address (`POKITNOTE_API_BASE`). The published default is still `https://pokitnote.com/mcp/`, and the field is not required, so normal use sets nothing. CI rejects a literal server URL, or a variable default, on any host other than `pokitnote.com`. The review below is the 14 October 2026 snapshot.
+
 Reviewed 14 October 2026, product revision `868b781` on `main`, plus the full git history (33 commits). The plugin that would be submitted is manifests, two skills, one command, a logo, a README, and tests. There is no local server in that tree.
 
 No Critical findings. At review time, one High finding would have blocked Marketplace review until a permissive license was added. Every server URL in the tree points at `https://pokitnote.com`.
