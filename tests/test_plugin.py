@@ -1,3 +1,4 @@
+import importlib.util
 import json
 import struct
 import unittest
@@ -14,7 +15,7 @@ class PluginConfigTest(unittest.TestCase):
         self.assertEqual(server["type"], "http")
         self.assertNotIn("command", server)
         self.assertNotIn("args", server)
-        self.assertEqual(server["url"], "https://pokitnote.com/mcp/")
+        self.assertEqual(server["url"], "${POKITNOTE_API_BASE}")
         self.assertEqual(server["auth"]["CLIENT_ID"], "grok-bot")
         self.assertEqual(server["auth"]["scopes"], ["notes"])
         self.assertNotIn("CLIENT_SECRET", server["auth"])
@@ -32,7 +33,13 @@ class PluginConfigTest(unittest.TestCase):
         self.assertEqual(market["plugins"][0]["name"], "pokit-note")
         plugin = json.loads((ROOT / ".cursor-plugin" / "plugin.json").read_text(encoding="utf-8"))
         self.assertEqual(plugin["mcpServers"], "./mcp.json")
-        self.assertNotIn("variables", plugin)
+        variables = plugin["variables"]
+        self.assertEqual(variables["type"], "object")
+        self.assertNotIn("POKITNOTE_API_BASE", variables.get("required", []))
+        address = variables["properties"]["POKITNOTE_API_BASE"]
+        self.assertEqual(address["title"], "Pokit Note address")
+        self.assertEqual(address["type"], "string")
+        self.assertEqual(address["default"], "https://pokitnote.com/mcp/")
         self.assertNotIn("pnt_", json.dumps(plugin))
         self.assertEqual(plugin["logo"], "assets/logo.png")
         logo = (ROOT / plugin["logo"]).read_bytes()
@@ -57,6 +64,55 @@ class PluginConfigTest(unittest.TestCase):
                 "Dog and cat food, treats, and litter go in Pet Food.",
                 text,
             )
+
+    def test_address_override_cannot_ship_a_non_production_default(self):
+        spec = importlib.util.spec_from_file_location(
+            "validate_plugin", ROOT / "scripts" / "validate_plugin.py"
+        )
+        if spec is None or spec.loader is None:
+            self.fail("could not load scripts/validate_plugin.py")
+        validate = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(validate)
+
+        plugin = json.loads((ROOT / ".cursor-plugin" / "plugin.json").read_text(encoding="utf-8"))
+        self.assertIsNone(
+            validate.resolved_mcp_url_problem("${POKITNOTE_API_BASE}", plugin["variables"])
+        )
+        self.assertIsNone(validate.resolved_mcp_url_problem("https://pokitnote.com/mcp/", None))
+        for url in ("https://stage.pokitnote.com/mcp/", "https://api.pokitnote.com/mcp/"):
+            self.assertIsNotNone(validate.resolved_mcp_url_problem(url, None), url)
+            staged = {
+                "type": "object",
+                "properties": {"POKITNOTE_API_BASE": {"type": "string", "default": url}},
+            }
+            self.assertIsNotNone(
+                validate.resolved_mcp_url_problem("${POKITNOTE_API_BASE}", staged),
+                url,
+            )
+        required = {
+            "type": "object",
+            "required": ["POKITNOTE_API_BASE"],
+            "properties": {
+                "POKITNOTE_API_BASE": {
+                    "type": "string",
+                    "default": "https://pokitnote.com/mcp/",
+                }
+            },
+        }
+        self.assertIsNotNone(validate.resolved_mcp_url_problem("${POKITNOTE_API_BASE}", required))
+        missing_default = {
+            "type": "object",
+            "properties": {"POKITNOTE_API_BASE": {"type": "string"}},
+        }
+        self.assertIsNotNone(
+            validate.resolved_mcp_url_problem("${POKITNOTE_API_BASE}", missing_default)
+        )
+        skill = (ROOT / "skills/pokit-note/SKILL.md").read_text(encoding="utf-8")
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        for text in (skill, readme):
+            self.assertIn("https://pokitnote.com/mcp/", text)
+            self.assertIn("Leave Pokit Note address unset", text)
+            self.assertNotIn("no address setting", text)
 
     def test_shared_link_goes_in_item_note(self):
         text = (ROOT / "skills/pokit-note-connected-assistant/SKILL.md").read_text(encoding="utf-8")
