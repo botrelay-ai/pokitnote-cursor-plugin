@@ -2,7 +2,7 @@
   "mcpServers": {
     "pokitnote": {
       "type": "http",
-      "url": "https://pokitnote.com/mcp/",
+      "url": "${POKITNOTE_API_BASE}",
       "auth": {
         "CLIENT_ID": "grok-bot",
         "scopes": ["notes"]

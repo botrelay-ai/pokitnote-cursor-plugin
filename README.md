@@ -18,6 +18,12 @@ Install the plugin through Cursor and connect Grok Bot to the Pokit Note app on 
 4. Open the routine's settings in the Grok Bot sidebar and copy its Webhook URL and Webhook Key. **Note:** you may have to ask the agent for a link to the routine in order to access the Webhook URL and Webhook Key.
 5. In the Pokit Note app on your iPhone, open Account, then Connected Assistant, and choose Grok Bot. Paste the URL and the key, tap Save, then tap Send Test. Grok Bot confirms it got the test.
 
+## Address
+
+Leave Pokit Note address unset for normal use. The connector uses https://pokitnote.com/mcp with no trailing slash.
+
+That field is an optional override of the MCP URL. Set it only when you are pointing the connector at a different Pokit Note server, and omit any trailing slash.
+
 ## Subscription
 
 Assistant setup and Send Test work right away. Every new account gets 7 days of full access. After that, editing, sharing, and change notices need the free trial (free for the first month) or a subscription ($29.99/year through the App Store). Without one, the account is read-only.

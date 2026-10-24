@@ -60,6 +60,8 @@ SECRET_KEYS = {
     "token",
 }
 PRODUCTION_HOST = "pokitnote.com"
+PRODUCTION_MCP_URL = "https://pokitnote.com/mcp"
+PLACEHOLDER = re.compile(r"\$\{([A-Za-z_][A-Za-z0-9_]*)\}")
 
 
 class Report:
@@ -263,19 +265,98 @@ def validate_marketplace(report: Report) -> None:
             report.error(f"{label}: name {name!r} does not match {display} name {manifest_name!r}")
 
 
-def check_production_url(value: object, label: str, report: Report) -> None:
-    if not isinstance(value, str) or not value.strip():
-        report.error(f"{label}: expected a URL")
-        return
+def production_url_problem(value: str) -> str | None:
     parsed = urlsplit(value)
     if parsed.scheme != "https" or parsed.hostname != PRODUCTION_HOST:
-        report.error(
-            f"{label}: server URL must be https://{PRODUCTION_HOST} "
+        return (
+            f"server URL must be https://{PRODUCTION_HOST} "
             f"(api.{PRODUCTION_HOST} and stage.{PRODUCTION_HOST} are not the production default)"
         )
-        return
     if parsed.port not in {None, 443} or parsed.username or parsed.password or parsed.query or parsed.fragment:
-        report.error(f"{label}: server URL must not include a port, user, query, or fragment")
+        return "server URL must not include a port, user, query, or fragment"
+    if parsed.path != "/mcp" or value.endswith("/"):
+        return f"server URL must be {PRODUCTION_MCP_URL} with no trailing slash"
+    return None
+
+
+def resolved_mcp_url_problem(value: object, variables: object) -> str | None:
+    """Reject a server URL whose published default is not production.
+
+    A literal URL has to be the production MCP URL. A ``${VAR}`` placeholder is
+    allowed only when that variable is optional and substituting its default
+    produces ``https://pokitnote.com/mcp`` with no trailing slash. Users then
+    leave the setting unset. A trailing slash on that default breaks Authenticate.
+    """
+    if not isinstance(value, str) or not value.strip():
+        return "expected a URL"
+    names = PLACEHOLDER.findall(value)
+    if not names:
+        return production_url_problem(value)
+    if not isinstance(variables, dict) or variables.get("type") != "object":
+        return "plugin variables must declare defaults for the server URL"
+    properties = variables.get("properties")
+    if not isinstance(properties, dict):
+        return "plugin variables.properties must be an object"
+    required = variables.get("required", [])
+    if not isinstance(required, list):
+        return "plugin variables.required must be an array"
+    resolved = value
+    problems: list[str] = []
+    for name in names:
+        if name in required:
+            problems.append(f"${{{name}}} must be optional so normal use does not need a value")
+        prop = properties.get(name)
+        if not isinstance(prop, dict):
+            problems.append(f"${{{name}}} is not declared in plugin variables")
+            continue
+        default = prop.get("default")
+        if not isinstance(default, str) or not default.strip() or PLACEHOLDER.search(default):
+            problems.append(
+                f"${{{name}}} needs a literal default of {PRODUCTION_MCP_URL} so users do not have to set it"
+            )
+            continue
+        resolved = resolved.replace("${" + name + "}", default, 1)
+    if problems:
+        return "; ".join(problems)
+    if resolved != PRODUCTION_MCP_URL:
+        host_problem = production_url_problem(resolved)
+        if host_problem:
+            return host_problem
+        return f"with defaults applied, the server URL must be {PRODUCTION_MCP_URL}"
+    return None
+
+
+def check_production_url(value: object, label: str, report: Report, variables: object = None) -> None:
+    problem = resolved_mcp_url_problem(value, variables)
+    if problem:
+        report.error(f"{label}: {problem}")
+
+
+def check_variable_defaults(variables: object, report: Report) -> None:
+    if variables is None:
+        return
+    label = ".cursor-plugin/plugin.json variables"
+    if not isinstance(variables, dict):
+        report.error(f"{label}: expected a JSON object")
+        return
+    if variables.get("type") != "object":
+        report.error(f"{label}: type must be object")
+    properties = variables.get("properties")
+    if properties is None:
+        return
+    if not isinstance(properties, dict):
+        report.error(f"{label}.properties: expected a JSON object")
+        return
+    for name, prop in properties.items():
+        prop_label = f"{label}.properties.{name}"
+        if not isinstance(prop, dict):
+            report.error(f"{prop_label}: expected a JSON object")
+            continue
+        default = prop.get("default")
+        if isinstance(default, str) and "://" in default:
+            problem = production_url_problem(default)
+            if problem:
+                report.error(f"{prop_label} default: {problem}")
 
 
 def reject_secrets(value: object, label: str, report: Report) -> None:
@@ -289,7 +370,7 @@ def reject_secrets(value: object, label: str, report: Report) -> None:
             reject_secrets(item, f"{label}[{index}]", report)
 
 
-def validate_mcp(report: Report) -> None:
+def validate_mcp(report: Report, variables: object = None) -> None:
     label = "mcp.json"
     data = require_object(load_json(ROOT / "mcp.json", report), label, report)
     if data is None:
@@ -309,7 +390,7 @@ def validate_mcp(report: Report) -> None:
         if "url" not in server_object:
             report.error(f"{server_label}: missing required field url")
         else:
-            check_production_url(server_object["url"], f"{server_label} url", report)
+            check_production_url(server_object["url"], f"{server_label} url", report, variables)
         if server_object.get("type") != "http":
             report.error(f"{server_label}: type must be http")
         for field in ("command", "args"):
@@ -394,9 +475,11 @@ def validate_skills(report: Report) -> None:
 
 def main() -> None:
     report = Report()
-    validate_plugin(report)
+    plugin = validate_plugin(report)
     validate_marketplace(report)
-    validate_mcp(report)
+    variables = plugin.get("variables") if isinstance(plugin, dict) else None
+    check_variable_defaults(variables, report)
+    validate_mcp(report, variables)
     validate_skills(report)
     report.finish()
 

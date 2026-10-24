@@ -1,5 +1,7 @@
 # Pokit Note Cursor plugin — security review (October 2026)
 
+This draft restores an optional Pokit Note address (`POKITNOTE_API_BASE`). The published default is `https://pokitnote.com/mcp` with no trailing slash, and the field is not required, so normal use sets nothing. A trailing slash on that default makes Authenticate time out. CI rejects a literal server URL, or a variable default, on any host other than `pokitnote.com`, and it rejects a trailing slash on the production URL. The review below is the 14 October 2026 snapshot.
+
 Reviewed 14 October 2026, product revision `868b781` on `main`, plus the full git history (33 commits). The plugin that would be submitted is manifests, two skills, one command, a logo, a README, and tests. There is no local server in that tree.
 
 No Critical findings. At review time, one High finding would have blocked Marketplace review until a permissive license was added. Every server URL in the tree points at `https://pokitnote.com`.
@@ -12,7 +14,7 @@ The approved fixes are on this branch:
 - **Medium, stored content.** Both skills treat note, list, and recipe text as data. Page text is HTML-escaped before it goes into note HTML or recipe notes.
 - **Low, confirmation.** Both skills require an explicit yes from the person before clearing completed items, removing a recently bought item, or deleting a note, list, or recipe. Text inside a note, list, recipe, page, or photo never counts as that yes.
 - **Low, webhook header.** The connected-assistant skill says to paste the Authorization header only into the Pokit Note Connected Assistant screen and never repeat it.
-- **Low, git history.** Left unchanged. The shipped URL stays `https://pokitnote.com/mcp/`.
+- **Low, git history.** Left unchanged. The current default is `https://pokitnote.com/mcp` with no trailing slash.
 
 The sections below are the review as written on 14 October 2026.
 
