@@ -1,5 +1,5 @@
 ---
-name: sign-in
+name: pn-sign-in
 description: Sign in to Pokit Note so Grok Bot can use your notes, lists, and recipes.
 ---
 
